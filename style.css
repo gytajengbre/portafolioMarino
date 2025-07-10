@@ -64,47 +64,57 @@ nav button:hover {
 .social-media {
     display: flex;
     gap: 15px;
-    margin: 10px 0;
+    margin: 20px auto; /* Centrado horizontal con margen */
     padding: 15px;
     border-radius: 10px;
-    background: #1e88e5; /* Azul moderno */
-    justify-content: center; /* Centra los íconos horizontalmente */
+    background: rgba(0, 34, 68, 0.8); /* Azul oscuro semitransparente que combina con tu --primary */
+    justify-content: center;
+    max-width: 90%; /* Evita que ocupe todo el ancho en pantallas grandes */
+    backdrop-filter: blur(5px); /* Efecto de vidrio esmerilado moderno */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
 }
 
 .social-media a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2); /* Fondo semitransparente */
-    color: white; /* Íconos blancos */
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
     text-decoration: none;
     transition: all 0.3s ease;
     font-size: 18px;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-media a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
 }
 
 .social-media a:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    background: white; /* Fondo blanco al hacer hover */
+    transform: translateY(-3px) scale(1.05);
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 170, 255, 0.3); /* Sombra que combina con tu --accent */
 }
 
-.social-media .fa-linkedin-in:hover {
-    color: #0077b5; /* Color de LinkedIn al hacer hover */
+.social-media a:hover::before {
+    left: 100%;
 }
 
-.social-media .fa-github:hover {
-    color: #333; /* Color de GitHub al hacer hover */
-}
-
-.social-media .fa-instagram:hover {
-    color: #e1306c; /* Color de Instagram al hacer hover */
-}
-
-.social-media .fa-whatsapp:hover {
-    color: #25D366; /* Color de WhatsApp al hacer hover */
+/* Colores específicos al hacer hover (más sutiles que tu versión anterior) */
+.social-media a:hover i {
+    color: white; /* Mantiene blanco en hover para mejor contraste */
+    text-shadow: 0 0 10px currentColor; /* Efecto de brillo */
 }
 
 .section {
@@ -161,4 +171,113 @@ footer {
   background-color: var(--primary);
   color: var(--white);
   padding: 1rem;
+}
+/* Estilos para resaltar las nuevas secciones */
+.highlighted-title {
+    color: var(--accent) !important;
+    font-size: 2rem !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: inline-block;
+}
+
+.highlighted-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+.highlighted-btn {
+    color: red;
+    font-weight: 700 !important;
+    position: relative;
+}
+
+.highlighted-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 2px;
+    background: var(--accent);
+    transition: all 0.3s ease;
+}
+
+.highlighted-btn:hover::after {
+    width: 100%;
+    background: var(--primary);
+}
+
+/* Asegúrate que el carrusel tenga espacio para las nuevas secciones */
+.carousel {
+    width: calc(100vw * 7); /* Ajusta según el número de secciones */
+}
+/* Estilos para el diseño de 2 columnas */
+.two-column-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.donation-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.payment-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  height: 100%;
+}
+
+.payment-card h3 {
+  color: var(--primary);
+  margin-top: 0;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.payment-details p {
+  margin: 8px 0;
+}
+
+.bank-card {
+  padding-bottom: 15px;
+}
+
+.bank-account {
+  background: rgba(0,0,0,0.02);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.bank-account h4 {
+  margin-top: 0;
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.bank-account p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .two-column-grid {
+    grid-template-columns: 1fr;
+  }
 }
